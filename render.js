@@ -1,7 +1,7 @@
 var zx;var zy;var cx; var cy; var pixelX;var pixelY;var zx_new;var zy_new;
 function render() {
-  let executeStartEquation = new Function(startEquation)();
-  let executeEquation = new Function(equation)();
+  let executeStartEquation = new Function(startEquation);
+  let executeEquation = new Function(equation);
   
   let limit = maxOverflow * maxOverflow;
   let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
