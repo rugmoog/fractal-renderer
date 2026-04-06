@@ -11,13 +11,13 @@ function render() {
     let pixelX = x / zoom + scroll_x;
     let pixelY = y / zoom + scroll_y;
 
-    new Function(null, startEquation);
+    new Function(startEquation)();
 
     let j;
     let zx_new = 0;
     let zy_new = 0;
     for (j = 0; j < max_depth && zx * zx + zy * zy < limit; j += 1) {
-      new Function(null, equation);
+      new Function(equation)();
       zx = zx_new;
       zy = zy_new;
     }
