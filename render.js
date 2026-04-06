@@ -1,3 +1,4 @@
+var zx;var zy;var cx; var cy; var pixelX;var pixelY;var zx_new;var zy_new;
 function render() {
   let executeStartEquation = new Function(startEquation)();
   let executeEquation = new Function(equation)();
@@ -11,17 +12,17 @@ function render() {
     const x = pixelNum % canvas.width;
     const y = Math.floor(pixelNum / canvas.width);
 
-    let pixelX = x / zoom + scroll_x;
-    let pixelY = y / zoom + scroll_y;
+    pixelX = x / zoom + scroll_x;
+    pixelY = y / zoom + scroll_y;
 
-    var zx; var zy; var cx; var cy;
+    zx = 0; zy=0; cx=0; cy=0;
     executeStartEquation();
     
     let j;
-    let zx_new = 0;
-    let zy_new = 0;
+    zx_new = 0;
+    zy_new = 0;
     for (j = 0; j < max_depth && zx * zx + zy * zy < limit; j += 1) {
-      executeEqution();
+      executeEquation();
       zx = zx_new;
       zy = zy_new;
     }
