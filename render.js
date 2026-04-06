@@ -1,4 +1,7 @@
 function render() {
+  let executeStartEquation = new Function(startEquation)();
+  let executeEquation = new Function(equation)();
+  
   let limit = maxOverflow * maxOverflow;
   let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   let data = imageData.data;
@@ -11,13 +14,13 @@ function render() {
     let pixelX = x / zoom + scroll_x;
     let pixelY = y / zoom + scroll_y;
 
-    new Function(startEquation)();
-
+    executeStartEquation();
+    
     let j;
     let zx_new = 0;
     let zy_new = 0;
     for (j = 0; j < max_depth && zx * zx + zy * zy < limit; j += 1) {
-      new Function(equation)();
+      executeEqution();
       zx = zx_new;
       zy = zy_new;
     }
