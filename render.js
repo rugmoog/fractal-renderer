@@ -1,7 +1,7 @@
 var zx;var zy;var cx; var cy; var pixelX;var pixelY;var zx_new;var zy_new;
 function render() {
-  let executeStartEquation = new Function(startEquation);
-  let executeEquation = new Function(equation);
+  let executeStartEquation = new Function("pixelX", "pixelY", "return {"+startEquation+"};");
+  let executeEquation = new Function("zx", "zy", "cx", "cy", "return {"+equation+"};");
   
   let limit = maxOverflow * maxOverflow;
   let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -16,15 +16,19 @@ function render() {
     pixelY = y / zoom + scroll_y;
 
     zx = 0; zy=0; cx=0; cy=0;
-    executeStartEquation();
+    const start = executeStartEquation(pixelX, pixelY);
+    zx = start.zx || 0;
+    zy = start.zy || 0;
+    cx = start.cx || pixelX;
+    cy = start.cy || pixelY;
     
     let j;
     zx_new = 0;
     zy_new = 0;
     for (j = 0; j < max_depth && zx * zx + zy * zy < limit; j += 1) {
-      executeEquation();
-      zx = zx_new;
-      zy = zy_new;
+      const next = executeEquation(zx,zy,cx,cy);
+      zx = next.zx_new;
+      zy = next.zy_new;
     }
 
     if (zx * zx + zy * zy > limit) {
