@@ -12,8 +12,8 @@ var colorFade = 100;
 var resolution = 50;
 var screenSize = 50;
 var maxOverflow = 2;
-var equation = "zx_new = zx * zx - zy * zy + cx; zy_new = 2 * zx * zy + cy;"
-var startEquation = "var cx = pixelX; var cy = pixelY; var zx = 0; var zy = 0;"
+var equation = "bleh"
+var startEquation = "bleh"
 var palette;
 
 var mouseDown = false;
